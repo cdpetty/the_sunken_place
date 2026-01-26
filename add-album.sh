@@ -14,7 +14,7 @@ echo ""
 read -p "Artist name: " artist
 read -p "Album/Song title: " title
 read -p "Album art URL: " albumArt
-read -p "Type (album/song) [album]: " type
+read -p "Type (album/song/EP/single) [album]: " type
 type=${type:-album}
 read -p "Year: " year
 read -p "Spotify URL (optional): " spotifyUrl
@@ -42,38 +42,21 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DATA_FILE="$SCRIPT_DIR/data.js"
 
-# Create the new entry (with or without Spotify URL)
+# Build the new entry as a single line to avoid awk issues
 if [[ -n "$spotifyUrl" ]]; then
-  NEW_ENTRY="  {
-    albumArt: \"$albumArt\",
-    artist: \"$artist\",
-    title: \"$title\",
-    type: \"$type\",
-    year: $year,
-    spotifyUrl: \"$spotifyUrl\"
-  },"
+  ENTRY="  { albumArt: \"$albumArt\", artist: \"$artist\", title: \"$title\", type: \"$type\", year: $year, spotifyUrl: \"$spotifyUrl\" },"
 else
-  NEW_ENTRY="  {
-    albumArt: \"$albumArt\",
-    artist: \"$artist\",
-    title: \"$title\",
-    type: \"$type\",
-    year: $year
-  },"
+  ENTRY="  { albumArt: \"$albumArt\", artist: \"$artist\", title: \"$title\", type: \"$type\", year: $year },"
 fi
 
-# Insert after "const musicFeed = [" line
-TEMP_FILE=$(mktemp)
-awk -v entry="$NEW_ENTRY" '
-  /const musicFeed = \[/ {
-    print
-    print entry
-    next
-  }
-  { print }
-' "$DATA_FILE" > "$TEMP_FILE"
-
-mv "$TEMP_FILE" "$DATA_FILE"
+# Use sed to insert after "const musicFeed = [" line
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS sed requires empty string for -i
+  sed -i '' "s|const musicFeed = \[|const musicFeed = [\n$ENTRY|" "$DATA_FILE"
+else
+  # Linux sed
+  sed -i "s|const musicFeed = \[|const musicFeed = [\n$ENTRY|" "$DATA_FILE"
+fi
 
 echo ""
 echo "✓ Added to data.js"
