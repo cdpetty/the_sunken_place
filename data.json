@@ -1,0 +1,44 @@
+[
+  {
+    "albumArt": "https://i.scdn.co/image/ab67616d00001e02e080e6df333f156977b338af",
+    "artist": "Gesaffelstein",
+    "title": "Enter the Gamma (Live)",
+    "type": "Enter The Gama (Live)",
+    "year": 2026
+  },
+  {
+    "albumArt": "https://upload.wikimedia.org/wikipedia/en/a/a3/Portishead_-_Dummy.png",
+    "artist": "Portishead",
+    "title": "Dummy",
+    "type": "album",
+    "year": 1994
+  },
+  {
+    "albumArt": "https://upload.wikimedia.org/wikipedia/en/1/1a/Massive_Attack_-_Mezzanine.png",
+    "artist": "Massive Attack",
+    "title": "Mezzanine",
+    "type": "album",
+    "year": 1998
+  },
+  {
+    "albumArt": "https://upload.wikimedia.org/wikipedia/en/c/c4/Nine_Inch_Nails_-_The_Downward_Spiral.png",
+    "artist": "Nine Inch Nails",
+    "title": "The Downward Spiral",
+    "type": "album",
+    "year": 1994
+  },
+  {
+    "albumArt": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
+    "artist": "Pink Floyd",
+    "title": "The Dark Side of the Moon",
+    "type": "album",
+    "year": 1973
+  },
+  {
+    "albumArt": "https://upload.wikimedia.org/wikipedia/en/1/10/Radiohead.bends.albumart.jpg",
+    "artist": "Radiohead",
+    "title": "The Bends",
+    "type": "album",
+    "year": 1995
+  }
+]
