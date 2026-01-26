@@ -17,6 +17,7 @@ read -p "Album art URL: " albumArt
 read -p "Type (album/song) [album]: " type
 type=${type:-album}
 read -p "Year: " year
+read -p "Spotify URL (optional): " spotifyUrl
 
 # Confirm
 echo ""
@@ -26,6 +27,7 @@ echo "Title:     $title"
 echo "Art URL:   $albumArt"
 echo "Type:      $type"
 echo "Year:      $year"
+[[ -n "$spotifyUrl" ]] && echo "Spotify:   $spotifyUrl"
 echo "─────────────────────────────────────"
 echo ""
 read -p "Add this entry? (y/n) [y]: " confirm
@@ -38,33 +40,43 @@ fi
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-DATA_FILE="$SCRIPT_DIR/data.json"
+DATA_FILE="$SCRIPT_DIR/data.js"
 
-# Create the new entry JSON (properly escaped)
-NEW_ENTRY=$(cat <<EOF
-  {
-    "albumArt": "$albumArt",
-    "artist": "$artist",
-    "title": "$title",
-    "type": "$type",
-    "year": $year
-  }
-EOF
-)
+# Create the new entry (with or without Spotify URL)
+if [[ -n "$spotifyUrl" ]]; then
+  NEW_ENTRY="  {
+    albumArt: \"$albumArt\",
+    artist: \"$artist\",
+    title: \"$title\",
+    type: \"$type\",
+    year: $year,
+    spotifyUrl: \"$spotifyUrl\"
+  },"
+else
+  NEW_ENTRY="  {
+    albumArt: \"$albumArt\",
+    artist: \"$artist\",
+    title: \"$title\",
+    type: \"$type\",
+    year: $year
+  },"
+fi
 
-# Insert the new entry at the beginning of the array (after the opening bracket)
-# Using a temp file for compatibility
+# Insert after "const musicFeed = [" line
 TEMP_FILE=$(mktemp)
-
-# Read existing JSON, insert new entry after opening bracket
-head -1 "$DATA_FILE" > "$TEMP_FILE"
-echo "$NEW_ENTRY," >> "$TEMP_FILE"
-tail -n +2 "$DATA_FILE" >> "$TEMP_FILE"
+awk -v entry="$NEW_ENTRY" '
+  /const musicFeed = \[/ {
+    print
+    print entry
+    next
+  }
+  { print }
+' "$DATA_FILE" > "$TEMP_FILE"
 
 mv "$TEMP_FILE" "$DATA_FILE"
 
 echo ""
-echo "✓ Added to data.json"
+echo "✓ Added to data.js"
 
 # Git operations
 cd "$SCRIPT_DIR"
@@ -73,14 +85,14 @@ read -p "Commit and push to GitHub? (y/n) [y]: " push
 push=${push:-y}
 
 if [[ "$push" == "y" || "$push" == "Y" ]]; then
-    git add data.json
+    git add data.js
     git commit -m "Add: $artist - $title"
     git push
     echo ""
     echo "✓ Pushed to GitHub!"
 else
     echo ""
-    echo "Changes saved locally. Run 'git add data.json && git commit && git push' when ready."
+    echo "Changes saved locally. Run 'git add data.js && git commit && git push' when ready."
 fi
 
 echo ""
