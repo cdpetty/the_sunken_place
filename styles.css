@@ -74,11 +74,12 @@ h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 4rem;
   letter-spacing: 0.3em;
-  color: #1a1a1a;
+  color: #4a4a4a;
   text-shadow:
-    0 0 10px rgba(139, 0, 0, 0.3),
-    0 0 20px rgba(139, 0, 0, 0.2),
-    0 0 40px rgba(139, 0, 0, 0.1),
+    0 0 10px rgba(139, 0, 0, 0.4),
+    0 0 20px rgba(139, 0, 0, 0.3),
+    0 0 40px rgba(139, 0, 0, 0.2),
+    0 0 60px rgba(139, 0, 0, 0.1),
     2px 2px 0 #2a2a2a;
   margin-bottom: 10px;
   animation: flicker 4s infinite;
@@ -96,9 +97,52 @@ h1 {
 .tagline {
   font-family: 'Special Elite', cursive;
   font-size: 0.9rem;
-  color: #4a4a4a;
+  color: #3a3a3a;
   letter-spacing: 0.2em;
   text-transform: lowercase;
+  animation: morseHelpMe 12s linear infinite;
+}
+
+/* Morse code for "HELP ME": .... . .-.. .--. / -- . */
+@keyframes morseHelpMe {
+  /* H: .... */
+  0%, 0.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  1%, 1.5% { color: #3a3a3a; text-shadow: none; }
+  2%, 2.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  3%, 3.5% { color: #3a3a3a; text-shadow: none; }
+  4%, 4.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  5%, 5.5% { color: #3a3a3a; text-shadow: none; }
+  6%, 6.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  7%, 9% { color: #3a3a3a; text-shadow: none; }
+  /* E: . */
+  10%, 10.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  11%, 13% { color: #3a3a3a; text-shadow: none; }
+  /* L: .-.. */
+  14%, 14.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  15%, 15.5% { color: #3a3a3a; text-shadow: none; }
+  16%, 18% { color: #fff; text-shadow: 0 0 10px #fff; }
+  18.5%, 19% { color: #3a3a3a; text-shadow: none; }
+  19.5%, 20% { color: #fff; text-shadow: 0 0 10px #fff; }
+  20.5%, 21% { color: #3a3a3a; text-shadow: none; }
+  21.5%, 22% { color: #fff; text-shadow: 0 0 10px #fff; }
+  22.5%, 25% { color: #3a3a3a; text-shadow: none; }
+  /* P: .--. */
+  26%, 26.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  27%, 27.5% { color: #3a3a3a; text-shadow: none; }
+  28%, 30% { color: #fff; text-shadow: 0 0 10px #fff; }
+  30.5%, 31% { color: #3a3a3a; text-shadow: none; }
+  31.5%, 33.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  34%, 34.5% { color: #3a3a3a; text-shadow: none; }
+  35%, 35.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  36%, 42% { color: #3a3a3a; text-shadow: none; }
+  /* M: -- */
+  43%, 45% { color: #fff; text-shadow: 0 0 10px #fff; }
+  45.5%, 46% { color: #3a3a3a; text-shadow: none; }
+  46.5%, 48.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  49%, 52% { color: #3a3a3a; text-shadow: none; }
+  /* E: . */
+  53%, 53.5% { color: #fff; text-shadow: 0 0 10px #fff; }
+  54%, 100% { color: #3a3a3a; text-shadow: none; }
 }
 
 /* Music Feed */
