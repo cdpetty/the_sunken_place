@@ -192,15 +192,15 @@ h1 .l14 { color: #111111; }
   font-family: 'Special Elite', cursive;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
-  color: #9a7fbf;
+  color: #4a2a6a;
   text-decoration: none;
   text-transform: lowercase;
   transition: all 0.3s ease;
 }
 
 .sink-link:hover {
-  color: #c4a6e6;
-  text-shadow: 0 0 10px rgba(154, 127, 191, 0.5);
+  color: #6b3d91;
+  text-shadow: 0 0 10px rgba(74, 42, 106, 0.6);
 }
 
 /* Morse code for "HELP ME": .... . .-.. .--. / -- . */
@@ -253,9 +253,8 @@ h1 .l14 { color: #111111; }
 .section-title {
   font-family: 'Special Elite', cursive;
   font-size: 0.8rem;
-  color: #3a3a3a;
+  color: #5a5a5a;
   letter-spacing: 0.2em;
-  text-transform: lowercase;
   margin-bottom: 30px;
 }
 
