@@ -186,6 +186,43 @@ h1 .l14 { color: #111111; }
   animation: morseHelpMe 12s linear infinite;
 }
 
+.sink-link {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: #666;
+  text-decoration: none;
+  border: 1px solid #2a2a2a;
+  background: rgba(10, 10, 10, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sink-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.sink-link:hover {
+  color: #999;
+  border-color: #8b0000;
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.sink-link:hover::before {
+  left: 100%;
+}
+
 /* Morse code for "HELP ME": .... . .-.. .--. / -- . */
 @keyframes morseHelpMe {
   /* H: .... */
