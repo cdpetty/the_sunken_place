@@ -27,6 +27,72 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+/* Dark fog/cloud effect */
+.fog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.fog {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(30, 30, 30, 0.8) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(20, 20, 20, 0.6) 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 80%, rgba(25, 25, 25, 0.7) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 60%, rgba(15, 15, 15, 0.5) 0%, transparent 35%);
+  opacity: 0.8;
+}
+
+.fog-1 {
+  top: -50%;
+  left: -50%;
+  animation: fogDrift1 30s ease-in-out infinite;
+}
+
+.fog-2 {
+  top: -25%;
+  left: -25%;
+  animation: fogDrift2 40s ease-in-out infinite reverse;
+  opacity: 0.5;
+}
+
+.fog-3 {
+  top: -75%;
+  left: -75%;
+  animation: fogDrift3 50s ease-in-out infinite;
+  opacity: 0.3;
+  background:
+    radial-gradient(ellipse at 60% 30%, rgba(40, 10, 10, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 70%, rgba(35, 15, 15, 0.3) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 80%, rgba(20, 5, 5, 0.5) 0%, transparent 40%);
+}
+
+@keyframes fogDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(5%, 10%) scale(1.05); }
+  50% { transform: translate(10%, 5%) scale(1.1); }
+  75% { transform: translate(5%, -5%) scale(1.05); }
+}
+
+@keyframes fogDrift2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-8%, 8%) rotate(2deg); }
+  66% { transform: translate(8%, -4%) rotate(-2deg); }
+}
+
+@keyframes fogDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15%, 10%) scale(1.15); }
+}
+
 /* Noise texture overlay */
 body::before {
   content: '';
