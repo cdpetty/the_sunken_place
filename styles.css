@@ -74,16 +74,33 @@ h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 4rem;
   letter-spacing: 0.3em;
-  color: #4a4a4a;
+  margin-bottom: 10px;
+  animation: flicker 4s infinite;
+}
+
+h1 span {
   text-shadow:
     0 0 10px rgba(139, 0, 0, 0.4),
     0 0 20px rgba(139, 0, 0, 0.3),
     0 0 40px rgba(139, 0, 0, 0.2),
-    0 0 60px rgba(139, 0, 0, 0.1),
     2px 2px 0 #2a2a2a;
-  margin-bottom: 10px;
-  animation: flicker 4s infinite;
 }
+
+/* Letters fade from bright to dark */
+h1 .l1  { color: #909090; }
+h1 .l2  { color: #858585; }
+h1 .l3  { color: #7a7a7a; }
+h1 .l4  { color: #6f6f6f; }
+h1 .l5  { color: #646464; }
+h1 .l6  { color: #595959; }
+h1 .l7  { color: #4e4e4e; }
+h1 .l8  { color: #434343; }
+h1 .l9  { color: #383838; }
+h1 .l10 { color: #2d2d2d; }
+h1 .l11 { color: #262626; }
+h1 .l12 { color: #1f1f1f; }
+h1 .l13 { color: #181818; }
+h1 .l14 { color: #111111; }
 
 @keyframes flicker {
   0%, 100% { opacity: 1; }
