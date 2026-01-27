@@ -2,6 +2,7 @@
 // Add new entries at the top of this array
 
 const musicFeed = [
+  { albumArt: "https://i.scdn.co/image/ab67616d00001e022e09c8f038c1edadef94f32e", artist: "Deisen", title: "Hereinspaziert", type: "song", year: 2020, spotifyUrl: "https://open.spotify.com/track/4n9s4xfcpAtllkRGC0hIIy?si=de0ad360d41142f3" },
   {
     albumArt: "https://i.scdn.co/image/ab67616d00001e02f08546e0279ff1df343fb430",
     artist: "ARTBAT",
