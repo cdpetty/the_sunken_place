@@ -191,20 +191,22 @@ h1 .l14 { color: #111111; }
   animation: morseHelpMe 12s linear infinite;
 }
 
-.sink-link {
-  display: inline;
-  margin-top: 20px;
+.sink-wrapper {
+  display: block;
+  margin-top: 30px;
   font-family: 'Special Elite', cursive;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
+  color: #3a3a3a;
+  text-transform: lowercase;
+}
+
+.sink-link {
   color: #e8e8e8;
   background: #7b4a9e;
   padding: 2px 4px;
   text-decoration: none;
-  text-transform: lowercase;
   transition: all 0.3s ease;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
 }
 
 .sink-link:hover {
