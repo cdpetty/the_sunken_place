@@ -42,21 +42,49 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DATA_FILE="$SCRIPT_DIR/data.js"
 
-# Build the new entry as a single line to avoid awk issues
+# Escape special characters for JavaScript strings (backslash and quotes)
+escape_js() {
+  local str="$1"
+  str="${str//\\/\\\\}"  # escape backslashes
+  str="${str//\"/\\\"}"  # escape quotes
+  echo "$str"
+}
+
+artist_escaped=$(escape_js "$artist")
+title_escaped=$(escape_js "$title")
+
+# Create temp files
+TEMP_FILE=$(mktemp)
+ENTRY_FILE=$(mktemp)
+
+# Write the new entry to a file (avoids all escaping issues)
 if [[ -n "$spotifyUrl" ]]; then
-  ENTRY="  { albumArt: \"$albumArt\", artist: \"$artist\", title: \"$title\", type: \"$type\", year: $year, spotifyUrl: \"$spotifyUrl\" },"
+  cat > "$ENTRY_FILE" << ENTRY_EOF
+  { albumArt: "$albumArt", artist: "$artist_escaped", title: "$title_escaped", type: "$type", year: $year, spotifyUrl: "$spotifyUrl" },
+ENTRY_EOF
 else
-  ENTRY="  { albumArt: \"$albumArt\", artist: \"$artist\", title: \"$title\", type: \"$type\", year: $year },"
+  cat > "$ENTRY_FILE" << ENTRY_EOF
+  { albumArt: "$albumArt", artist: "$artist_escaped", title: "$title_escaped", type: "$type", year: $year },
+ENTRY_EOF
 fi
 
-# Use sed to insert after "const musicFeed = [" line
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # macOS sed requires empty string for -i
-  sed -i '' "s|const musicFeed = \[|const musicFeed = [\n$ENTRY|" "$DATA_FILE"
-else
-  # Linux sed
-  sed -i "s|const musicFeed = \[|const musicFeed = [\n$ENTRY|" "$DATA_FILE"
+# Find line number of "const musicFeed = [" and insert after it
+LINE_NUM=$(grep -n "^const musicFeed = \[" "$DATA_FILE" | cut -d: -f1)
+
+if [[ -z "$LINE_NUM" ]]; then
+    echo "✗ Error: Could not find musicFeed array in data.js"
+    rm -f "$TEMP_FILE" "$ENTRY_FILE"
+    exit 1
 fi
+
+# Build new file: head up to array line, new entry, rest of file
+head -n "$LINE_NUM" "$DATA_FILE" > "$TEMP_FILE"
+cat "$ENTRY_FILE" >> "$TEMP_FILE"
+tail -n +"$((LINE_NUM + 1))" "$DATA_FILE" >> "$TEMP_FILE"
+
+# Replace original file
+mv "$TEMP_FILE" "$DATA_FILE"
+rm -f "$ENTRY_FILE"
 
 echo ""
 echo "✓ Added to data.js"

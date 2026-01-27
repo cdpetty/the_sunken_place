@@ -2,7 +2,6 @@
 // Add new entries at the top of this array
 
 const musicFeed = [
-  { albumArt: "https://i.scdn.co/image/ab67616d00001e027a97d922da1a3d1a8a4fc3fa", artist: "Layton Giordani", title: "UFOs const musicFeed = [ LFOs", type: "song", year: 2022, spotifyUrl: "https://open.spotify.com/track/3HYXTGa1nlSoWWJ5Kl6khG?si=806f2e337845474a" },
   { albumArt: "https://i.scdn.co/image/ab67616d00001e022e09c8f038c1edadef94f32e", artist: "Deisen", title: "Hereinspaziert", type: "song", year: 2020, spotifyUrl: "https://open.spotify.com/track/4n9s4xfcpAtllkRGC0hIIy?si=de0ad360d41142f3" },
   {
     albumArt: "https://i.scdn.co/image/ab67616d00001e02f08546e0279ff1df343fb430",
