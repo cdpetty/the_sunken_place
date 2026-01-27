@@ -403,20 +403,118 @@ footer p {
 
 /* Responsive */
 @media (max-width: 600px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  header {
+    padding: 20px 15px 15px;
+    margin-bottom: 20px;
+  }
+
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  h1 span {
+    text-shadow:
+      0 0 8px rgba(123, 74, 158, 0.5),
+      0 0 15px rgba(123, 74, 158, 0.3),
+      1px 1px 0 #2a2a2a;
+  }
+
+  .tagline {
+    font-size: 0.75rem;
     letter-spacing: 0.15em;
   }
 
+  .sink-link {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    padding: 8px 0;
+  }
+
+  .section-title {
+    font-size: 0.7rem;
+    margin-bottom: 20px;
+  }
+
+  .feed {
+    gap: 20px;
+  }
+
   .music-card {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    padding: 15px;
+    gap: 15px;
   }
 
   .album-art {
-    width: 180px;
-    height: 180px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .music-info {
+    gap: 5px;
+  }
+
+  .artist {
+    font-size: 0.7rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.65rem;
+  }
+
+  .spotify-link {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+
+  footer {
+    margin-top: 50px;
+    padding-top: 20px;
+  }
+
+  footer p {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0 10px;
+  }
+
+  /* Reduce fog complexity on mobile for performance */
+  .fog-2, .fog-3 {
+    display: none;
+  }
+
+  .fog-1 {
+    animation-duration: 40s;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  h1 {
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .album-art {
+    width: 70px;
+    height: 70px;
+  }
+
+  .title {
+    font-size: 1rem;
   }
 }
 
