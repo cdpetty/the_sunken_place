@@ -18,6 +18,8 @@ read -p "Type (album/song/EP/single) [album]: " type
 type=${type:-album}
 read -p "Year: " year
 read -p "Spotify URL (optional): " spotifyUrl
+read -p "SoundCloud URL (optional): " soundcloudUrl
+read -p "YouTube URL (optional): " youtubeUrl
 
 # Confirm
 echo ""
@@ -28,6 +30,8 @@ echo "Art URL:   $albumArt"
 echo "Type:      $type"
 echo "Year:      $year"
 [[ -n "$spotifyUrl" ]] && echo "Spotify:   $spotifyUrl"
+[[ -n "$soundcloudUrl" ]] && echo "SoundCloud: $soundcloudUrl"
+[[ -n "$youtubeUrl" ]] && echo "YouTube:    $youtubeUrl"
 echo "─────────────────────────────────────"
 echo ""
 read -p "Add this entry? (y/n) [y]: " confirm
@@ -57,16 +61,16 @@ title_escaped=$(escape_js "$title")
 TEMP_FILE=$(mktemp)
 ENTRY_FILE=$(mktemp)
 
+# Build optional URL fields
+URL_FIELDS=""
+[[ -n "$spotifyUrl" ]] && URL_FIELDS="${URL_FIELDS}, spotifyUrl: \"$spotifyUrl\""
+[[ -n "$soundcloudUrl" ]] && URL_FIELDS="${URL_FIELDS}, soundcloudUrl: \"$soundcloudUrl\""
+[[ -n "$youtubeUrl" ]] && URL_FIELDS="${URL_FIELDS}, youtubeUrl: \"$youtubeUrl\""
+
 # Write the new entry to a file (avoids all escaping issues)
-if [[ -n "$spotifyUrl" ]]; then
-  cat > "$ENTRY_FILE" << ENTRY_EOF
-  { albumArt: "$albumArt", artist: "$artist_escaped", title: "$title_escaped", type: "$type", year: $year, spotifyUrl: "$spotifyUrl" },
+cat > "$ENTRY_FILE" << ENTRY_EOF
+  { albumArt: "$albumArt", artist: "$artist_escaped", title: "$title_escaped", type: "$type", year: $year${URL_FIELDS} },
 ENTRY_EOF
-else
-  cat > "$ENTRY_FILE" << ENTRY_EOF
-  { albumArt: "$albumArt", artist: "$artist_escaped", title: "$title_escaped", type: "$type", year: $year },
-ENTRY_EOF
-fi
 
 # Find line number of "const musicFeed = [" and insert after it
 LINE_NUM=$(grep -n "^const musicFeed = \[" "$DATA_FILE" | cut -d: -f1)

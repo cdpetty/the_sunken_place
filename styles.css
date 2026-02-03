@@ -393,6 +393,38 @@ h1 .l14 { color: #111111; }
   border-color: #1db954;
 }
 
+.soundcloud-link {
+  color: #ff5500;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border: 1px solid #ff550040;
+  transition: all 0.2s ease;
+}
+
+.soundcloud-link:hover {
+  background: #ff5500;
+  color: #0a0a0a;
+  border-color: #ff5500;
+}
+
+.youtube-link {
+  color: #ff0000;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border: 1px solid #ff000040;
+  transition: all 0.2s ease;
+}
+
+.youtube-link:hover {
+  background: #ff0000;
+  color: #0a0a0a;
+  border-color: #ff0000;
+}
+
 /* Footer */
 footer {
   margin-top: 80px;
@@ -481,7 +513,9 @@ footer p {
     font-size: 0.65rem;
   }
 
-  .spotify-link {
+  .spotify-link,
+  .soundcloud-link,
+  .youtube-link {
     font-size: 0.6rem;
     padding: 3px 8px;
   }

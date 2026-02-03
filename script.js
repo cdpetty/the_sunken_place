@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
       ? `<a href="${item.spotifyUrl}" target="_blank" rel="noopener" class="spotify-link">SPOTIFY</a>`
       : '';
 
+    const soundcloudLink = item.soundcloudUrl
+      ? `<a href="${item.soundcloudUrl}" target="_blank" rel="noopener" class="soundcloud-link">SOUNDCLOUD</a>`
+      : '';
+
+    const youtubeLink = item.youtubeUrl
+      ? `<a href="${item.youtubeUrl}" target="_blank" rel="noopener" class="youtube-link">YOUTUBE</a>`
+      : '';
+
     card.innerHTML = `
       <div class="album-art">
         <img src="${item.albumArt}" alt="${item.title} by ${item.artist}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect fill=%22%231a1a1a%22 width=%22120%22 height=%22120%22/%3E%3Ctext fill=%22%233a3a3a%22 x=%2260%22 y=%2265%22 text-anchor=%22middle%22 font-family=%22monospace%22%3E?%3C/text%3E%3C/svg%3E'">
@@ -22,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="type">${item.type}</span>
           <span class="year">${item.year}</span>
           ${spotifyLink}
+          ${soundcloudLink}
+          ${youtubeLink}
         </div>
       </div>
     `;
