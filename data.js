@@ -2,6 +2,7 @@
 // Add new entries at the top of this array
 
 const musicFeed = [
+  { albumArt: "https://i.scdn.co/image/ab67616d00001e02da996ec32ba639ca508f8fec", artist: "CamelPhat, Massano, Nu-La", title: "Oblivion", type: "song", year: 2024, spotifyUrl: "https://open.spotify.com/track/6nuqo0u5Ex03YMRL0SdyLs?si=2c48b7318c274623" },
   { albumArt: "https://yt3.ggpht.com/bVYSBgDgjx0Onq0N5WPEZkbwlwGNECTsjzQorUshOfrebX0Y5sYWBaVOQ_HhjJUN847tBkw2=s88-c-k-c0x00ffffff-no-rj", artist: "Anyma B2B Solomun", title: "WE2 | Tomorrowland 2025", type: "song", year: 2025, youtubeUrl: "https://www.youtube.com/watch?v=__6eaOzFYK0" },
   { albumArt: "https://i.scdn.co/image/ab67616d00001e024310cecb7b631d80d4129ebd", artist: "The Sponges", title: "Space Funk '75", type: "song", year: 2019, spotifyUrl: "https://open.spotify.com/track/6sGDxKo6gsklfgStjQ8hp0?si=18742720838e4d29" },
   { albumArt: "https://i.scdn.co/image/ab67616d00001e026e0064eb7ad1aed5cb7f7278", artist: "Kyle Watson", title: "Kick Drums", type: "song", year: 2023, spotifyUrl: "https://open.spotify.com/track/0tpw2iisVlCnG0QG8SCIG1?si=b4f0d0b587144edf" },
